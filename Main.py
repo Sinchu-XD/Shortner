@@ -11,7 +11,7 @@ bot = Client("shortener_bypass_bot", api_id=API_ID, api_hash=API_HASH, bot_token
 
 url_pattern = re.compile(r'https?://\S+')
 
-async def get_final_url_async(url):
+async def get_final_url(url):
     try:
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=True)
