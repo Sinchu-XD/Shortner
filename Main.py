@@ -17,7 +17,9 @@ async def get_final_url(url):
             browser = await p.chromium.launch(headless=True)
             page = await browser.new_page()
             await page.goto(url, wait_until="networkidle")
-            final_url = page.url
+            await page.wait_for_selector("a#redirect", timeout=10000)
+            final_url = await page.eval_on_selector("a#redirect", "element => element.href")
+
             await browser.close()
             return final_url
     except Exception as e:
