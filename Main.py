@@ -31,7 +31,7 @@ async def bypass_link(_, message):
     
     for url in urls:
         await message.reply(f"🔗 Bypassing: {url}")
-        result = get_final_url(url)
+        result = await get_final_url(url)
         await message.reply(f"✅ Final URL:\n{result}")
 
 @bot.on_message(filters.command("start") & filters.private)
